@@ -1,18 +1,18 @@
 RequireJS Introduction
 
 What is it?
-It is a library to dynamically load JavaScript libraries. 
-It uses a concept called Asynchronous Module Definition - AMD. 
+It is a library to dynamically load JavaScript files, or modules, or libraries. 
+It is based on a concept called Asynchronous Module Definition - AMD. 
 
 Why is it required?
-To develop a maintainable and scalable software, the code is organized into different JavaScript files.
+To develop a maintainable, and scalable software, the code is typically organized into different JavaScript files.
 When the files depend on each other, they need to be referred in the required dependency order in a .html file, using script tags.
 The complexity becomes obvious as the project scope expands, which generally results in increased number of JavaScript files.
 RequireJS elegantly manages dependencies, and aids in developing loosely coupled JavaScript modules.
 
 How to implement it?
 Step 1: 
-Staring JavaScript file of the application has to be within "require" clause.
+Starting JavaScript file of the application has to be within "require" clause.
 This can look like below:
 
 require('mainModuleName', ['dependency1ModuleName'], function(){	
@@ -24,13 +24,13 @@ require('mainModuleName', ['dependency1ModuleName'], function(){
 });
 
 The "require" function takes below parameters:
-1. An optional module name, default being the name of the JavaScript file.
-2. An array of depencencies in square
-3. A dynamic function that can return a JavaScript object literal or perform some task.
+1. An optional module name, default being the name of the JavaScript file
+2. An array of depencencies
+3. A dynamic function that can return a JavaScript object literal or perform some task
 
 Step 2: 
-Rest of the dependent files have to be enclosed within "define" clause.
-The dependencies generally JavaScript object literals, like below:
+Other files have to have a "define" clause, within which logic needs to be written.
+The dependencies generally return JavaScript object literals, like shown below:
 
 define('dependency1ModuleName', [], function(){
 	return{
@@ -47,18 +47,20 @@ define('dependency1ModuleName', [], function(){
 });
 
 Step 3: 
-Next major step is to define a configuration.
+Next major step is to define a configuration like config.js.
 
-1. The first part of configuration calls "requirejs.config" method that take an object with following properties:
+1. The first part of configuration calls a "requirejs.config" method. 
+This takes an object with following properties:
 1.1. baseUrl - JavaScript folder name
-1.2. paths - where a name to specify an external library like 'jquery', and its relative path inside a specified "baseUrl"
+1.2. paths - where a name (to specify an external library) like 'jquery', and its relative path inside a specified "baseUrl"
 1.3. shim - this is an object, that has a property for each dependant module and its array of dependencies. This ensures the files are loaded in the specified order of depedency.
 
-2.The second part calls "require" method, which takes below parameters:
+2.The second part calls the "require" method. 
+It takes below parameters:
 2.1. An array of depedency where mainModuleName can be passed
 2.2. A dynamic function that takes mainModuleName object and calls method(s) of this object that need to run on load of the .html file.
 
-This may be done like below:
+This can look like below:
 
 requirejs.config({
     baseUrl: 'JS',
@@ -85,13 +87,15 @@ require(["mainModuleName"], function(mainModuleName){
 
 Step 4: 
 Finally the .html file needs only one script tag to refer to RequireJS file.
-The tag needs to point to RequireJS file.
-Additionally "data-main" attribute must point to the configuration file.
+The script tag needs to point to a local, or CDN copy of RequireJS file.
+Additionally "data-main" attribute must point to the configuration file defined in the previous step.
 
 This can look like below:
+
   <script data-main="JS\config" data-require="requirejs@2.3.2" data-semver="2.3.2" src="http://requirejs.org/docs/release/2.3.2/minified/require.js"></script>
 
-Hope this gives you a starting point!
+Hope this helps you start writing using RequireJS...
+Happy coding!
   
 Example:
 https://github.com/harsha-narahari/RequireSample

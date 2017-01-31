@@ -13,7 +13,8 @@ RequireJS elegantly manages dependencies, and aids in developing loosely coupled
 How to implement it?
 Step 1: 
 Starting JavaScript file of the application has to be within "require" clause.
-This can look like below:
+
+Illustration:
 
 require('mainModuleName', ['dependency1ModuleName'], function(){	
 	return{
@@ -30,7 +31,8 @@ The "require" function takes below parameters:
 
 Step 2: 
 Other files have to have a "define" clause, within which logic needs to be written.
-The dependencies generally return JavaScript object literals, like shown below:
+The dependencies generally return JavaScript objects (as object literals or modules).
+Illustration:
 
 define('dependency1ModuleName', [], function(){
 	return{
@@ -60,7 +62,7 @@ It takes below parameters:
 2.1. An array of depedency where mainModuleName can be passed
 2.2. A dynamic function that takes mainModuleName object and calls method(s) of this object that need to run on load of the .html file.
 
-This can look like below:
+Illustration:
 
 requirejs.config({
     baseUrl: 'JS',
@@ -90,11 +92,13 @@ Finally the .html file needs only one script tag to refer to RequireJS file.
 The script tag needs to point to a local, or CDN copy of RequireJS file.
 Additionally "data-main" attribute must point to the configuration file defined in the previous step.
 
-This can look like below:
+Illustration:
 
   <script data-main="JS\config" data-require="requirejs@2.3.2" data-semver="2.3.2" src="http://requirejs.org/docs/release/2.3.2/minified/require.js"></script>
 
-Hope this helps you start writing using RequireJS...
+Conclusion:
+This is an attempt at demonstrates RequireJS implementation.
+Hope it helps you to implement RequireJS in your projects, and reap its benefits.
 Happy coding!
   
 Example:
